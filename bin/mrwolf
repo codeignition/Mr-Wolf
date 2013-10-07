@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+require 'mrwolf'
+########fixing the arguments for the program#
+  options=[]
+  ARGV.each do |arg|
+              options.push(arg)
+              
+            end
+
+  hash_of_args=Hash.new{nil}
+  i=1
+  #first argument is whether to package or to publish
+  while i < options.length
+      hash_of_args[options[i]]=options[i+1]
+      i=i+2
+  end
+  #hash_of_args[-p]=project
+  #hash_of_args[-n]=name_of_project
+  #hash_of_args[-v]=version of rpm file
+  path       =hash_of_args["-p"]
+  project    =hash_of_args["-n"]
+  version    =hash_of_args["-v"]
+########################################
+
+  fixer=Mrwolf.new(path,project,version)
+  if options[0]=="package"
+    fixer.package
+  elsif options[0]=="publish"
+    fixer.transport
+  elsif options[0]=="--help"
+    print "
+           mrwolf  package => to package a directory,
+                        -p => path of directory to package.
+                        -n => name of the rpm generated
+                        -v => version of the rpm
+
+           mrwolf publish => to publish a directory to s3....set aws variable as ENV variables
+                       -p => path of directory to package.
+                       -n => name of the rpm generated
+                       -v => version of the rpm"
+  else
+   puts "Error:enter a task"
+  end
