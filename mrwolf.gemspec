@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name               = "mrwolf"
-  s.version            = "0.0.1"
+  s.version            = "0.0.0"
   s.default_executable = "mrwolf"
 
   s.authors = ["codeignition"]
@@ -11,6 +11,4 @@ Gem::Specification.new do |s|
   s.summary = %q{mrwolf the cleaner!}
   s.bindir = "bin"
   s.executables << "mrwolf"
-    
 end
-
