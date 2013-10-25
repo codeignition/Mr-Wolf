@@ -10,5 +10,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.summary = %q{mrwolf the cleaner!}
   s.bindir = "bin"
+  s.add_dependency "thor"
   s.executables << "mrwolf"
 end

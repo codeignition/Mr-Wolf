@@ -5,4 +5,5 @@ source 'https://rubygems.org'
  gem "fpm"
  gem "fog"
  gem "bundler"
+ gem "thor"
 
