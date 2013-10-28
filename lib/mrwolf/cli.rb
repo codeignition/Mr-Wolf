@@ -9,7 +9,10 @@ module Mrwolf
     method_option :rpm_version, :aliases => "-v"
     method_option :prefix,      :aliases => "-p"
     def package
-      fixer=Mrwolf::Executor.new(options[:path],options[:rpm_name],options[:rpm_version],options[:prefix])
+      fixer=Mrwolf::Executor.new(options[:path] || "./",
+                                 options[:rpm_name],
+                                 options[:rpm_version] || "0.1",
+                                 options[:prefix]|| "/opt")
       fixer.package
     end
 

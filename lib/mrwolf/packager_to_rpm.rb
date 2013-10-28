@@ -9,26 +9,7 @@ module Mrwolf
 
     def package
       require 'fpm'
-      package = FPM::Package::Dir.new
-      package.input("#{@path}")
-
-      package.attributes = {
-                             :rpm_defattrfile => "-", 
-                             :rpm_user => "$USER", 
-                             :rpm_group => "$USER", 
-                             :rpm_defattrdir => "-",
-                             :prefix => "#{@prefix}"
-                           }
-      rpm = package.convert(FPM::Package::RPM)
-      rpm.name = "#{@project}"
-      rpm.version = "#{@version}"
-      rpm.architecture="noarch"
-      begin
-        output = "NAME-VERSION.ARCH.rpm"
-        rpm.output(rpm.to_s(output))
-      ensure
-        rpm.cleanup
-      end
+      puts `fpm -s dir -t rpm -n #{@project} -a all -v #{@version} --prefix #{@prefix} #{@path}`
     end
   end
 end
