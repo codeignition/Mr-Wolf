@@ -4,11 +4,12 @@ require "thor"
 module Mrwolf
   class CLI < Thor
     desc "package", "create rpm package"
-    method_option :path, :aliases => "-t"
-    method_option :rpm_name, :aliases => "-n"
+    method_option :path,        :aliases => "-t"
+    method_option :rpm_name,    :aliases => "-n"
     method_option :rpm_version, :aliases => "-v"
+    method_option :prefix,      :aliases => "-p"
     def package
-      fixer=Mrwolf::Executor.new(options[:path],options[:rpm_name],options[:rpm_version])
+      fixer=Mrwolf::Executor.new(options[:path],options[:rpm_name],options[:rpm_version],options[:prefix])
       fixer.package
     end
 

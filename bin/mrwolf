@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
-
+require 'thor'
 require 'rubygems'
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), "..", "lib")))
-require 'mrwolf/cli'
-Mrwolf::CLI.start
+require 'mrwolf'
+Mrwolf::CLI.start(ARGV)
+

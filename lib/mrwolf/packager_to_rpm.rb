@@ -1,9 +1,10 @@
 module Mrwolf
   class Packager
-    def initialize(path,project,version)
+    def initialize(path,project,version,prefix)
       @project                = project
       @path                   = path
       @version                = version
+      @prefix                 = prefix
     end
 
     def package
@@ -11,7 +12,13 @@ module Mrwolf
       package = FPM::Package::Dir.new
       package.input("#{@path}")
 
-      package.attributes = { :rpm_defattrfile => "-", :rpm_user => "$USER", :rpm_group => "$USER", :rpm_defattrdir => "-" }
+      package.attributes = {
+                             :rpm_defattrfile => "-", 
+                             :rpm_user => "$USER", 
+                             :rpm_group => "$USER", 
+                             :rpm_defattrdir => "-",
+                             :prefix => "#{@prefix}"
+                           }
       rpm = package.convert(FPM::Package::RPM)
       rpm.name = "#{@project}"
       rpm.version = "#{@version}"

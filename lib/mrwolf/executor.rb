@@ -1,13 +1,14 @@
 module Mrwolf
   class Executor
-    def initialize(path,project,version)
+    def initialize(path,project,version,prefix)
       @path       =path
       @project    =project
       @version    =version
+      @prefix     =prefix
     end
 
     def package
-      task = Packager.new(@path,@project,@version)
+      task = Packager.new(@path,@project,@version,@prefix)
       task.package
     end
 
