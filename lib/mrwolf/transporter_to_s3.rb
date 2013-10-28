@@ -1,7 +1,7 @@
 module Mrwolf
   class Transporter
-    def initialize(project,version)
-
+    def initialize(path,project,version)
+      @path                  = path
       @PROJECT               = project
       @AWS_ACCESS_KEY_ID     = ENV['AWS_ACCESS_KEY_ID']
       @AWS_SECRET_ACCESS_KEY = ENV['AWS_SECRET_ACCESS_KEY']
@@ -24,11 +24,6 @@ module Mrwolf
 
       directory.files.create(key: artifact, body: File.open(artifact_path), public: false)
 
-      if directory.files.head("#{@PROJECT}/#{@PROJECT}-#{@version}.noarch.rpm")
-        "success"
-      else
-        "failure"
-      end
     end
   end
 end

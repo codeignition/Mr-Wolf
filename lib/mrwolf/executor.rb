@@ -1,10 +1,10 @@
 module Mrwolf
   class Executor
     def initialize(path,project,version,prefix)
-      @path       =path
-      @project    =project
-      @version    =version
-      @prefix     =prefix
+      @path       =path       || "./"
+      @project    =project 
+      @version    =version    || "0.1"
+      @prefix     =prefix     || "/opt"
     end
 
     def package
@@ -13,7 +13,7 @@ module Mrwolf
     end
 
     def transport
-      task = Transporter.new(@project,@version)
+      task = Transporter.new(@path,@project,@version)
       task.publish
     end
   end
